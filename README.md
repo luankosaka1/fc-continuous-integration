@@ -29,3 +29,22 @@
 -- Filtros (branches: master)
 -- Ambiente (runs-on: ubuntu)
 -- Ações (uses: action/run-composer; run: npm run prod)
+
+## Criando Workflow
+
+1. Criar arquivo .github/workflows/ci.yaml
+2. Adicionar o código no arquivo ci.yaml
+```
+name: ci-golang-workflow
+on: [pull_request]
+jobs:
+    check-application:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-go@v2
+                with:
+                    go-version: 1.18
+            - run: go test
+            - run: go run math.go
+```
